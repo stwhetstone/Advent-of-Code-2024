@@ -1,7 +1,5 @@
-#include <iostream>
 #include <fstream>
 #include <vector>
-#include <string>
 #include <unordered_map>
 
 int main() {
@@ -9,28 +7,14 @@ int main() {
 
     std::vector<int> left;
     std::vector<int> right;
-    std::unordered_map<int, int> rightCount;
+    std::unordered_map<int, int> rightFrequency;
 
-    std::string s = "";
-    char c = ' ';
-    int side = 0, tmp = 0, dist = 0, likeness = 0;
+    int l = 0, r = 0, dist = 0, similarity = 0;
 
-    while(file.get(c)) {
-        if((c == ' ' && file.peek() != ' ') || c == '\n') {
-            tmp = stoi(s);
-            if(side == 0) {
-                left.push_back(tmp);
-                side = 1;
-            } else if(side == 1){ 
-                right.push_back(tmp);
-                rightCount[tmp] += 1;
-                side = 0;
-            }
-            s = "";
-        }
-        if(c != '\n' && c != ' ') {
-            s += c;
-        }
+    while(file >> l >> r) {
+        left.push_back(l);
+        right.push_back(r);
+        rightFrequency[r] += 1;
     }
 
     std::sort(left.begin(), left.end());
@@ -39,11 +23,10 @@ int main() {
     for(int i = 0; i < left.size(); i++) {
         dist += abs(left[i] - right[i]);
 
-        likeness += left[i] * rightCount[left[i]];
+        similarity += left[i] * rightFrequency[left[i]];
     }
 
-
-    printf("%d %d\n", dist, likeness);
+    printf("%d %d\n", dist, similarity);
 
     file.close();
 
