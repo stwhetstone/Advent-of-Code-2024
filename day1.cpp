@@ -16,7 +16,7 @@ int main() {
     int side = 0, tmp = 0, dist = 0, likeness = 0;
 
     while(file.get(c)) {
-        if((c == ' ' && file.peek() != ' ') || c == '\n' || file.peek() == EOF) {
+        if((c == ' ' && file.peek() != ' ') || c == '\n') {
             tmp = stoi(s);
             if(side == 0) {
                 left.push_back(tmp);
