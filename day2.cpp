@@ -5,7 +5,7 @@
 int main() {
     std::ifstream file("day2.txt");
     std::string in; 
-    int cur = 0, last = 0, safeCount = 0, unsafeCount = 1;
+    int cur = 0, last = 0, safeCount = 0;
     bool isSafe = true, up = false;
 
     while(std::getline(file, in)) {
@@ -13,7 +13,6 @@ int main() {
 
         isSafe = true;
         up = false;
-        unsafeCount = 1;
 
         s >> last >> cur;
 
